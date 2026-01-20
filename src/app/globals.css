@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 2%;
+    --foreground: 0 0% 93%;
+    --font-inter: "Inter", sans-serif;
+  }
+}
+
+body {
+  background-color: #050505;
+  color: #ededed;
+  font-family: var(--font-inter);
+  overflow-x: hidden;
+}
+
+/* Custom Scrollbar for Webkit */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #050505;
+}
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #00f0ff;
+}
+
+@layer components {
+  .glass-panel {
+    @apply bg-glass backdrop-blur-md border border-glass-border shadow-lg;
+  }
+  
+  .neon-text {
+    text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+  }
+  
+  .btn-primary {
+    @apply bg-primary text-black font-semibold px-6 py-2 rounded-full transition-all duration-300 hover:shadow-[0_0_20px_rgba(0,240,255,0.4)] hover:scale-105 active:scale-95;
+  }
+
+  .btn-secondary {
+    @apply bg-glass border border-glass-border text-white px-6 py-2 rounded-full transition-all duration-300 hover:bg-white/10 hover:border-primary/50;
+  }
+}

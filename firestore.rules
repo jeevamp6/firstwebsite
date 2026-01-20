@@ -1,0 +1,30 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Helper function to check if user is admin (simple auth check for now)
+    // In production, you might check custom claims or a specific UID list
+    function isAdmin() {
+      return request.auth != null;
+    }
+
+    // Reels: Public read, Admin write
+    match /reels/{reelId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Documents: Public read, Admin write
+    match /documents/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Contact Messages: Public write (create only), Admin read/delete
+    match /contactMessages/{msgId} {
+      allow create: if true;
+      allow read, delete: if isAdmin();
+      allow update: if false;
+    }
+  }
+}
