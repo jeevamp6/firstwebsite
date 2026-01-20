@@ -1,51 +1,70 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-@layer base {
-  :root {
-    --background: 0 0% 2%;
-    --foreground: 0 0% 93%;
-    --font-inter: "Inter", sans-serif;
-  }
-}
+@theme {
+  --color-background: #050505;
+  --color-foreground: #ededed;
 
-body {
-  background-color: #050505;
-  color: #ededed;
-  font-family: var(--font-inter);
-  overflow-x: hidden;
-}
+  --color-primary: #00f0ff;
+  --color-primary-hover: #00c0cc;
 
-/* Custom Scrollbar for Webkit */
-::-webkit-scrollbar {
-  width: 8px;
-}
-::-webkit-scrollbar-track {
-  background: #050505;
-}
-::-webkit-scrollbar-thumb {
-  background: #333;
-  border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #00f0ff;
+  --color-secondary: #7000ff;
+  --color-secondary-hover: #5a00cc;
+
+  --color-accent: #ff0099;
+
+  --color-glass: rgba(255, 255, 255, 0.05);
+  --color-glass-border: rgba(255, 255, 255, 0.1);
+
+  --font-inter: "Inter", sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  /* Custom Shadows */
+  --shadow-neon: 0 0 20px rgba(0, 240, 255, 0.4);
 }
 
+/* Custom Utilities */
 @layer components {
   .glass-panel {
     @apply bg-glass backdrop-blur-md border border-glass-border shadow-lg;
   }
-  
+
   .neon-text {
     text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
   }
-  
+
   .btn-primary {
-    @apply bg-primary text-black font-semibold px-6 py-2 rounded-full transition-all duration-300 hover:shadow-[0_0_20px_rgba(0,240,255,0.4)] hover:scale-105 active:scale-95;
+    @apply bg-primary text-black font-semibold px-6 py-2 rounded-full transition-all duration-300 hover:shadow-neon hover:scale-105 active:scale-95 cursor-pointer;
   }
 
   .btn-secondary {
-    @apply bg-glass border border-glass-border text-white px-6 py-2 rounded-full transition-all duration-300 hover:bg-white/10 hover:border-primary/50;
+    @apply bg-glass border border-glass-border text-white px-6 py-2 rounded-full transition-all duration-300 hover:bg-white/10 hover:border-primary/50 cursor-pointer;
+  }
+}
+
+/* Base styles */
+@layer base {
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--color-background);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-primary);
   }
 }
