@@ -19,7 +19,7 @@ export default function AboutPage() {
                             Our mission is to bridge the gap between entertaining reels and educational resources. Watch a 60-second summary, then download the detailed PDF to master the topic.
                         </p>
                         <p className="border-l-2 border-secondary pl-4 py-1 italic text-white">
-                            "Stop wasting time on hour-long lectures. Get straight to the point with ReelDocs."
+                            &quot;Stop wasting time on hour-long lectures. Get straight to the point with ReelDocs.&quot;
                         </p>
                     </div>
                 </div>

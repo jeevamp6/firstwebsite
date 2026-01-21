@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
+import { Inter } from "next/font/google"; // [NEW]
 import "./globals.css";
+
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" }); // [NEW]
 
 export const metadata: Metadata = {
   title: "ReelDocs",
@@ -15,9 +18,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`antialiased`}>
+      <body className={`${inter.variable} antialiased`}>
         <Providers>{children}</Providers>
       </body>
+
     </html>
   );
 }

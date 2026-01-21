@@ -1,11 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useAuth } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
 import { Reel, ReelDocument } from "@/types";
-import { getReels, getDocuments, addReel, addDocument, deleteReel, deleteDocument } from "@/utils/firestore";
-import { uploadFile } from "@/utils/storage";
+import { getReels, getDocuments, deleteReel, deleteDocument } from "@/utils/firestore";
 import { Trash2, Plus, LogOut, Video, FileText } from "lucide-react";
 import { auth } from "@/utils/firebase";
 
@@ -27,14 +26,15 @@ export default function AdminDashboard() {
         }
     }, [user, loading, router]);
 
-    useEffect(() => {
-        if (user) refreshData();
-    }, [user]);
-
-    const refreshData = async () => {
+    const refreshData = useCallback(async () => {
         setReels(await getReels());
         setDocs(await getDocuments());
-    };
+    }, []);
+
+    useEffect(() => {
+        if (user) refreshData();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [user]);
 
     if (loading || !user) return <div className="min-h-screen flex items-center justify-center text-white">Loading...</div>;
 

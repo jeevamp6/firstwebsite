@@ -1,7 +1,7 @@
 "use client";
 
 import { Reel } from "@/types";
-import { Play, FileText, Download } from "lucide-react";
+import { FileText, Download } from "lucide-react";
 import Link from "next/link";
 
 interface ReelCardProps {
